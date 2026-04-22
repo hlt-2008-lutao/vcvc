@@ -2,377 +2,171 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>导航页</title>
+    <title>导航模板</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        html, body {
-            width: 800px;
-            min-width: 800px;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            padding-bottom: 100px;
-            background: url(https://s3.bmp.ovh/2026/04/21/I4Xer2rx.png) no-repeat center top;
-            background-size: 100% auto;
-            background-attachment: scroll;
-            overflow-x: auto;
-            overflow-y: visible;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .notice {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
+        body {
+            background-color: #000;
+            color: #fff;
             padding: 16px;
-            margin: 0 auto 20px;
-            border: 1px solid rgba(100, 149, 237, 0.5);
-            color: #fff;
-            text-shadow: 0 0 5px rgba(100, 149, 237, 0.5);
-            max-width: 760px;
-            position: relative;
-            z-index: 1;
+            max-width: 430px;
+            margin: 0 auto;
         }
-        .notice h3 {
-            color: #fff;
-            text-shadow: 0 0 8px #0ef;
+        .banner {
+            background: linear-gradient(135deg, #6a5acd 0%, #ff69b4 100%);
+            border-radius: 20px;
+            padding: 32px 20px;
             text-align: center;
+            margin-bottom: 16px;
         }
-
-        /* 动态提示条样式 */
-        .tip-marquee {
+        .banner .domain {
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+        .banner .btn {
+            background-color: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            padding: 20px;
+            font-size: 1.6rem;
+            color: #fff;
+            display: block;
             width: 100%;
-            height: 28px;
-            line-height: 28px;
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid gold;
-            border-radius: 6px;
-            margin: 10px 0 0;
-            overflow: hidden;
-            position: relative;
-        }
-        .tip-inner {
-            position: absolute;
-            white-space: nowrap;
-            color: #fffa;
-            font-weight: bold;
-            font-size: 14px;
-            animation: tipMove 25s linear infinite;
-        }
-        @keyframes tipMove {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* 标题 + 滚动公告 同行布局 */
-        .title-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 25px 0 10px 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .title-box {
-            font-size: 22px;
-            font-weight: bold;
-            color: #222;
-            background: linear-gradient(90deg, #aaa, #ddd, #aaa, #fff);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
-            text-shadow: 0 0 12px rgba(180,180,180,0.6), 0 0 24px rgba(150,150,150,0.4);
-            white-space: nowrap;
-        }
-        @keyframes shine {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* 右侧滚动公告栏（已缩短） */
-        .marquee-box {
-            flex: 0 0 250px; /* 固定宽度：250px */
-            width: 250px;
-            height: 30px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid gold;
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-        }
-        .marquee-inner {
-            position: absolute;
-            height: 100%;
-            line-height: 30px;
-            white-space: nowrap;
-            color: gold;
-            font-size: 14px;
-            font-weight: bold;
-            text-shadow: 0 0 5px #000;
-            animation: marquee 12s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(250px); } /* 从公告栏右端开始 */
-            100% { transform: translateX(-100%); }
-        }
-
-        .grid-container {
-            display: flex;
-            gap: 20px;
-            margin: 0 0 0 10px;
-            position: relative;
-            z-index: 1;
+            border: none;
         }
         .card {
-            background: transparent;
-            border-radius: 10px;
-            padding: 6px;
+            background-color: #eee;
+            color: #000;
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin-bottom: 16px;
+        }
+        .card .title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .card .title .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+        .card .text-block {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .grid-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            text-align: center;
             text-decoration: none;
-            border: 2px solid transparent;
-            transition: 0.3s ease;
-            width: 100px;
-            text-align: center;
-            position: relative;
         }
-        .card:hover {
-            transform: translateY(-3px);
-        }
-
-        /* 仅官方12个图标金色光晕动画 */
-        .official img {
-            position: relative;
-            z-index: 1;
-        }
-        .official::after {
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 6px;
-            box-shadow: 0 0 12px gold, 0 0 28px goldenrod;
-            animation: glow 1.5s infinite alternate;
-            z-index: 0;
-        }
-        @keyframes glow {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        .card img {
-            width: 44px;
-            height: 44px;
-            border-radius: 6px;
-            object-fit: cover;
+        .grid-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             margin-bottom: 6px;
-            border: 1px solid rgba(255,255,255,0.2);
+            object-fit: cover;
         }
-        .card-title {
-            font-size: 13px;
-            color: gold;
-            text-shadow: 0 0 2px #000;
+        .grid-item .name {
+            font-size: 0.8rem;
+            color: #000;
             line-height: 1.2;
-            font-weight: bold;
-            z-index: 1;
+            white-space: nowrap;
         }
-        .bottom-slogan {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: gold;
-            text-shadow: 0 0 8px #000, 0 0 15px #ffd700;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-        a, a:focus, a:active, .card, .card:focus, img, img:focus, :focus {
-            outline: none !important;
-        }
-        img {
-            border: 0 !important;
-        }
-        .card, .card:hover {
-            box-shadow: none !important;
+        .simu-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 14px;
         }
     </style>
 </head>
 <body>
-
-    <div class="notice">
-        <h3>💡 帮助公告（可双指缩小）</h3>
-        <p>以下平台全是Ng旗下正版授权，充值达700后返388，人头派发后、站长将以向下级转账方式转入你钱包，成为站长下级每月充值达到200后，每月15号以向下级转账方式派发88-188红包，每月亏损都会以向下级转账方式转去你钱包，每亏损200得66红包，每月最后一天结算，站长每日20点查看下级数据</p>
-        
-        <!-- 动态滚动提示条 -->
-        <div class="tip-marquee">
-            <div class="tip-inner">站长温馨提示：我希望你们来我网站玩模拟器时顺便点开平台注册上俩张，但我更希望你们来我网站玩模拟器是戒得差不多了</div>
-        </div>
-        
-        <p>模拟器认准：kkcc.netlify.app（可复制）和https://t.hk.uy/cdd7（可复制）</p>
+    <div class="banner">
+        <div class="domain">PG777.LOL</div>
+        <button class="btn">2026世界杯<br>点击查看赛程</button>
     </div>
 
-    <!-- 标题 + 右侧滚动公告 -->
-    <div class="title-row">
-        <div class="title-box">官方认证平台/.</div>
-        <div class="marquee-box">
-            <div class="marquee-inner">
-                从以下平台注册的，每月充值达到200后15号将以向下级转账方式派发88-188红包，站长每日20点查看下级数据
+    <div class="card">
+        <div class="title">
+            <span class="icon">🔥</span>
+            十年信誉平台
+        </div>
+        <div class="text-block">
+            模拟器你们可以去抖音评论区换水
+        </div>
+        <div class="red-text">
+            冲够600找站长旺旺414856912达标返388
+        </div>
+        <div class="text-block">
+            打不开台子切换成WiFi刷新几下
+        </div>
+
+        <div class="title" style="margin-top: 16px;">
+            <span class="icon">⚽</span>
+            世界杯官方投注平台
+        </div>
+        <div class="grid">
+            <a class="grid-item" href="https://lncqc.jgqvji.com/app/register.php?site_id=1050&topId=8501769272993287&selfPlanId=4678519" target="_blank">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/19/JfyWQ89B.png">
+                <div class="name">非凡娱乐</div>
+            </a>
+            <a class="grid-item" href="https://cv16f.top" target="_blank">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/21/SSBc4wXq.png">
+                <div class="name">超凡国际</div>
+            </a>
+            <a class="grid-item" href="https://izcvoj.hfjcl.com/app/register.php?site_id=1021&topId=3991774367380774" target="_blank">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/21/TIXRXrZO.png">
+                <div class="name">多多28</div>
+            </a>
+            <a class="grid-item" href="https://wdtb65.top" target="_blank">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/19/8CNWxVEA.png">
+                <div class="name">问鼎娱乐</div>
+            </a>
+            <a class="grid-item" href="https://hd99g.top" target="_blank">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/21/PnQbMXLf.png">
+                <div class="name">汇赢国际</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">
+            <span class="icon">🔥</span>
+            PG模拟器大全
+        </div>
+        <div class="simu-grid">
+            <div class="grid-item">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/21/0BwiklNe.png">
+                <div class="name">PG模拟器</div>
+            </div>
+            <div class="grid-item">
+                <img class="icon" src="https://s3.bmp.ovh/2026/04/21/cWLwdQq2.png">
+                <div class="name">PP模拟器</div>
             </div>
         </div>
     </div>
-
-    <div class="grid-container">
-        <a href="https://aj89z.top" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/19/HKSqHkch.jpg" alt="君临国际">
-            <span class="card-title">君临国际</span>
-        </a>
-        <a href="https://x57wt.top" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/19/iLZ4VQ8C.jpg" alt="无限娱乐新台">
-            <span class="card-title">无限娱乐</span>
-        </a>
-        <a href="https://31sgx.top" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/19/5zRW9N1l.jpg" alt="新时代国际">
-            <span class="card-title">新时代国际</span>
-        </a>
-        <a href="https://t50xz.top" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/19/ZEZeHku4.jpg" alt="征途国际">
-            <span class="card-title">征途国际</span>
-        </a>
-    </div>
-
-    <div class="grid-container" style="margin-top:10px;">
-        <a href="https://shturl.cc/7X24JNSHgTVWvNwVg0F9e2EUAS3oRPSbq8wMizzk35HeRazwK2TxyLBB2YNY2JGrCQeB" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/NJeSimio.png" alt="赏金国际">
-            <span class="card-title">赏金国际</span>
-        </a>
-        <a href="javascript:;" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/UOMslHHT.png" alt="梦想国际">
-            <span class="card-title">梦想国际</span>
-        </a>
-        <a href="https://ydkzj.jgqvji.com/app/register.php?site_id=1056&topId=6791776682945150" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/RkAnD2fu.png" alt="逐梦国际">
-            <span class="card-title">逐梦国际</span>
-        </a>
-        <a href="https://22bxy.top" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/hAxRAolA.png" alt="星耀国际">
-            <span class="card-title">星耀国际</span>
-        </a>
-    </div>
-
-    <div class="grid-container">
-        <a href="https://lejva.tprsmi.com/app/register.php?site_id=1058&topId=3287474&selfPlanId=2506794" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/CMPTstnL.png" alt="胜天国际">
-            <span class="card-title">胜天国际</span>
-        </a>
-        <a href="https://shturl.cc/TMKJM1VIrVEdMC5SPsPBbdHP6rANIWpAZpJKasSDSs9qfFrNaiGDc40bYg6cQtxh0ShpFemUKHcmaXfWmDve6GLbPJAUXnhMldb4lZOtIcjhyDn61lKMYf2VwQ" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/dBDpdX62.png" alt="旺财28">
-            <span class="card-title">旺财28</span>
-        </a>
-        <a href="https://onkrcy.fnbpsw.com/app/register.php?site_id=2080&pt=D3168146-533F-FB84-6091-77BE5CEA873F" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/qFSvT6xp.png" alt="凯旋娱乐">
-            <span class="card-title">凯旋娱乐</span>
-        </a>
-        <a href="https://gfvgx.jgqvji.com/app/register.php?site_id=800&pt=8106D3EE-6194-7360-150A-8BE3ABB1EE5F" target="_blank" class="card official">
-            <img src="https://s3.bmp.ovh/2026/04/20/3vHbbLad.png" alt="壹号娱乐">
-            <span class="card-title">壹号娱乐</span>
-        </a>
-    </div>
-
-    <div class="title-box">模拟器大全/.</div>
-    <div class="grid-container">
-        <a href="https://154.23.164.137:9137/sus.php" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/ckXHBmAt.png" alt="PG模拟器">
-            <span class="card-title">PG模拟器</span>
-        </a>
-        <a href="https://jp5.ee/mnq.html" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/E3a79Hdd.png" alt="PP模拟器">
-            <span class="card-title">PP模拟器</span>
-        </a>
-        <a href="https://b8388.cc" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/ckXHBmAt.png" alt="模拟器加速器">
-            <span class="card-title">模拟器加速器</span>
-        </a>
-        <a href="javascript:;" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/4EUNJovl.png" alt="CQ9模拟器">
-            <span class="card-title">CQ9模拟器</span>
-        </a>
-    </div>
-
-    <div class="grid-container">
-        <a href="javascript:;" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/diURY3xM.jpg" alt="彩票模拟器">
-            <span class="card-title">彩票模拟器</span>
-        </a>
-        <a href="https://demo.starscg666.link/index_m.php" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/gK7YMIwa.png" alt="CG模拟器">
-            <span class="card-title">CG模拟器</span>
-        </a>
-        <a href="https://grdemoweb.richgaming.net" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/2Vnlb3JH.png" alt="GR模拟器">
-            <span class="card-title">GR模拟器</span>
-        </a>
-        <a href="https://yl.ishxu648.com" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/JeESB6M0.png" alt="开元棋牌模拟器">
-            <span class="card-title">开元棋牌模拟器</span>
-        </a>
-    </div>
-
-    <div class="title-box">上分说明/.</div>
-    <div class="grid-container">
-        <a href="https://www.notion.so/298b170da55880abb523d29fcb2a418b" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/19/xQA1tV4X.jpg" alt="第一课">
-            <span class="card-title">第一课</span>
-        </a>
-    </div>
-
-    <div class="title-box">安眠药/.</div>
-    <div class="grid-container">
-        <a href="https://yyq_12_c39w0306.58jprlpg.work/?ch=szyqqhqn#/home" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/6z1Z2zYo.png" alt="百威">
-            <span class="card-title">百威</span>
-        </a>
-        <a href="https://kkmh_qm_3890_6y02vqis.pnba7t8q.work/?ch=mwdpkkkt" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/Lk4aEjSQ.png" alt="珠江">
-            <span class="card-title">珠江</span>
-        </a>
-        <a href="https://dtt_2_aav6aa6j.5mfto55k.work/?ch=nmizqady#/home" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/tQ8n06as.png" alt="强爽">
-            <span class="card-title">强爽</span>
-        </a>
-        <a href="https://manhuadao1.xyz" target="_blank" class="card">
-            <img src="https://s3.bmp.ovh/2026/04/20/ZrCwSEcu.png" alt="九江">
-            <span class="card-title">九江</span>
-        </a>
-    </div>
-
-    <div class="bottom-slogan">
-        人生南北多歧路，上分认准这条路：kkcc.netlify.app
-    </div>
-
 </body>
 </html>
